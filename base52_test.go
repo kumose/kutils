@@ -24,15 +24,15 @@ import (
 )
 
 func TestEncode(t *testing.T) {
-	require.Equal(t, "2TPzw7", Encode(1000000000))
+	require.Equal(t, "2TPzw7", Base52Encode(1000000000))
 }
 
 func TestDecode(t *testing.T) {
-	decoded, err := Decode("2TPzw7")
+	decoded, err := Base52Decode("2TPzw7")
 	require.Equal(t, int64(1000000000), decoded)
 	require.Nil(t, err)
 
-	decoded, err = Decode("../../etc/passwd")
+	decoded, err = Base52Decode("../../etc/passwd")
 	require.Equal(t, int64(0), decoded)
 	require.NotNil(t, err)
 }

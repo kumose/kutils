@@ -28,7 +28,7 @@ const (
 )
 
 // Encode returns a string by encoding the id over a 51 characters space
-func Encode(id int64) string {
+func Base52Encode(id int64) string {
 	var short []byte
 	for id > 0 {
 		i := id % int64(base)
@@ -43,7 +43,7 @@ func Encode(id int64) string {
 
 // Decode will decode the string and return the id
 // The input string should be a valid one with only characters in the space
-func Decode(encoded string) (int64, error) {
+func Base52Decode(encoded string) (int64, error) {
 	if len(encoded) != len([]rune(encoded)) {
 		return 0, fmt.Errorf("invalid encoded string: '%s'", encoded)
 	}
